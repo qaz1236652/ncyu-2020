@@ -1,1 +1,1 @@
-ex3-verify.sh
+ex1-verify.sh

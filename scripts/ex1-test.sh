@@ -29,7 +29,7 @@ fi
 
 GITHUB_REPO=$GITHUB_ACCOUNT/$GITHUB_PROJECT
 PROJECT_URL=git@github.com:$GITHUB_REPO
-PROJECT_BRANCH=ex3
+PROJECT_BRANCH=ex1
 
 GIT_NAME=`git config -l --show-scope | grep local | grep user.name`
 
@@ -44,16 +44,41 @@ else
 	exit 1
 fi
 
-git clone -q $PROJECT_URL -b ex0 $GITHUB_PROJECT
-echo "[STATUS] Example 3: Github clone done"
-pushd $GITHUB_PROJECT
+COMMIT_MSG="[Example 1] $GIT_NAME"
+
+if ! [ -d .git ] || [ `git remote -v | wc -l ` -ne 0 ]; then
+	echo "[ERROR] Initialize the new Git repository first."
+	exit 1
+fi
 
 # update local and remote code base
-git remote add official https://github.com/jrjang/$GITHUB_PROJECT
-git fetch -q official
-git push -q -f origin official/$PROJECT_BRANCH:refs/heads/$PROJECT_BRANCH
-git push -q -f origin official/$PROJECT_BRANCH-2:refs/heads/$PROJECT_BRANCH-2
-git checkout official/$PROJECT_BRANCH-2 -b $PROJECT_BRANCH-2
-git stash clear
-echo "[STATUS] Example 3: Github update done"
-popd
+git remote add origin $PROJECT_URL
+git remote add official https://github.com/jrjang/ncyu-2020
+git fetch -q --all
+echo "[STATUS] Example 1: Git fetch done"
+
+git checkout --detach
+
+if [[ "`git branch`" =~ "$PROJECT_BRANCH" ]]; then
+	git branch -D $PROJECT_BRANCH
+fi
+
+git checkout -b $PROJECT_BRANCH
+git rebase official/$PROJECT_BRANCH
+
+flag=
+
+if [[ "`git show HEAD`" =~ "Signed-off-by:" ]]; then
+	flag=-s
+fi
+
+git commit $flag -q --amend -m "$COMMIT_MSG"
+echo "[STATUS] Example 1: Git commit amend done"
+
+git push -f -q origin HEAD:refs/heads/$PROJECT_BRANCH
+echo "[STATUS] Example 1: Git push done"
+
+hub pull-request -b jrjang/ncyu-2020:$PROJECT_BRANCH -h $GITHUB_REPO:$PROJECT_BRANCH -m "$COMMIT_MSG"
+echo "[STATUS] Example 1: Github pull requests done"
+
+echo "[STATUS] Example 1: done"

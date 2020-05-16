@@ -1,16 +1,22 @@
-Example 3:
+Example 1:
 
-1. 先執行以下指令, 會將環境準備好
+1. 建立新的資料夾並切換至新資料夾
 
-```
-cd $HOME
-bash <(curl -s https://raw.githubusercontent.com/jrjang/ncyu-2020/ex3/scripts/ex3-pre.sh) GITHUB_ACCOUNT GITHUB_PROJECT
-```
-
-2. 切到GITHUB_PROJECT資料夾下. 依照投影片描述做修改
-
-3. 完成並commit後, 在GITHUB_PROJECT資料夾下, 執行以下指令
+2. 執行以下指令
 
 ```
-bash <(curl -s https://raw.githubusercontent.com/jrjang/ncyu-2020/ex3/scripts/ex3-test.sh) GITHUB_ACCOUNT GITHUB_PROJECT
+git init
+echo "Example 1" > ex1.txt
 ```
+
+3. 將ex1.txt加入git local repository並commit
+
+4. 在新資料夾下執行以下指令
+
+```
+bash <(curl -s https://raw.githubusercontent.com/jrjang/ncyu-2020/ex1/scripts/ex1-test.sh) GITHUB_ACCOUNT GITHUB_PROJECT
+```
+
+GITHUB_ACCOUNT: github帳號
+
+GITHUB_PROJECT: github repository名稱 (之後的example皆可以用同樣名稱, 建議使用ncyu-2020)
