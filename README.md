@@ -11,6 +11,7 @@ Example 0:
 2. 在Git Bash中執行以下指令
 
 ```
+cd $HOME
 bash <(curl -s https://raw.githubusercontent.com/jrjang/ncyu-2020/ex0/scripts/ex0-test.sh) GITHUB_ACCOUNT GITHUB_PROJECT CHINESE_NAME
 ```
 
