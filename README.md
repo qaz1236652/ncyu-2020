@@ -5,8 +5,8 @@ Example 1:
 2. 執行以下指令
 
 ```
-git init
-echo "Example 1" > ex1.txt
+ git init
+ echo "Example 1" > ex1.txt
 ```
 
 3. 將ex1.txt加入git local repository並commit
