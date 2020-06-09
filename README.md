@@ -14,9 +14,8 @@ echo "Example 1" > ex1.txt
 4. 在新資料夾下執行以下指令
 
 ```
-bash <(curl -s https://raw.githubusercontent.com/jrjang/ncyu-2020/ex1/scripts/ex1-test.sh) GITHUB_ACCOUNT GITHUB_PROJECT
+bash <(curl -s https://raw.githubusercontent.com/jrjang/ncyu-2020/ex1/scripts/ex1-test.sh) GITHUB帳號 GITHUB專案名稱
 ```
 
-GITHUB_ACCOUNT: github帳號
 
 GITHUB_PROJECT: github repository名稱 (之後的example皆可以用同樣名稱, 建議使用ncyu-2020)
